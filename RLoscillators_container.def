@@ -1,0 +1,94 @@
+Bootstrap: debootstrap
+OSVersion: jammy
+MirrorURL: http://eu.archive.ubuntu.com/ubuntu
+
+%labels
+Owner Leonardo Giannantoni
+Author leonardo.giannantoni@polito.it
+Version v0.0.1
+
+%setup
+
+%post -c /bin/bash
+
+export DEBIAN_FRONTEND=noninteractive
+
+# make print colour #
+GREEN=$(tput setaf 2)
+RED=$(tput setaf 1)
+NOCOLOUR=$(tput sgr0)
+
+echo "${GREEN}~~~ Installing dependencies ~~~ ${NOCOLOUR}"
+apt-get -y update
+apt-get -y install apt-utils \
+build-essential \
+curl \
+software-properties-common
+
+add-apt-repository universe
+
+apt-get -y update
+apt-get -y install git \
+libbz2-dev \
+binutils \
+unzip \
+zlib1g \
+zlib1g-dev \
+liblzma-dev \
+libssl-dev \
+libbz2-dev \
+libreadline-dev \
+libsqlite3-dev \
+wget \
+libncurses5 \
+libncurses5-dev \
+xz-utils \
+tk-dev \
+libxml2-dev \
+libxmlsec1-dev \
+libffi-dev \
+bzip2 \
+vim \
+python3.10 \
+python3.10-dev \
+python3.10-venv \
+python3-setuptools \
+python3-pip
+
+
+# give all files 774 and directories 775 by default
+echo "${GREEN}~~~ Changing permissions (774 for files, 775 for directories) ~~~ ${NOCOLOUR}"
+umask 002
+
+
+echo "${GREEN}~~~ Installing RLoscillators ~~~ ${NOCOLOUR}"
+cd ..
+git clone https://github.com/smilies-polito/RLoscillators.git --branch v0.1-BIBM23 --single-branch
+
+cd RLoscillators
+
+python3 -m venv venv
+source venv/bin/activate
+
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+%environment
+export PATH=/RLoscillators:$PATH
+
+%runscript
+# first and last lines force execution in bash instead of sh
+/bin/bash <<EOF
+cd /RLoscillators
+source venv/bin/activate
+echo "${GREEN}~~~ Running experiment with arguments: ~~~ ${NOCOLOUR}"
+python src/main.py $*
+EOF
+
+%startscript
+echo "startscript"
+
+%test
+echo "${GREEN}~~~ Test ~~~ ${NOCOLOUR}"
+cat /etc/os-release
+python3 --version

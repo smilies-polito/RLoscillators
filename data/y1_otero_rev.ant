@@ -1,0 +1,88 @@
+# Reactions
+
+# eq. 1
+J1 : tetRm -> ; 0.005*tetRm
+J2 : P3araC -> P3araC + tetRm ; 0.0001*P3araC
+J3 : P3 -> tetRm ; 0.1*P3
+J3x:  -> P3 ; 0.1
+
+#eq. 2
+J4 : tetRm -> tetRm + tetR ; 0.1*tetRm
+J5 : tetR -> ; 0.001*tetR
+J6 : tetR + P2-> P2tetR ; 1*tetR*P2
+J7 : P2tetR -> P2+ tetR ; 0.5*P2tetR
+
+#eq. 3
+J8 : araCm -> ; 0.001*araCm
+J9 : P4lacI -> P4lacI + araCm ; 0.000005*P4lacI
+J10: P4 -> araCm ; 0.1*P4
+J10x:  -> P4 ; 0.1
+
+#eq. 4
+J11: araCm -> araCm + araC ; 0.1*araCm
+J12: araC -> ; 0.001*araC
+J13: araC + P3 -> P3araC ; 1*araC*P3
+J14: P3araC -> P3 + araC ; 0.000001*P3araC
+
+#eq. 5
+J15: lacIm -> ; 0.001*lacIm
+J16: P2tetR -> P2tetR + lacIm ; 0.00005*P2tetR
+J17: P2-> lacIm ; 0.09*P2
+J17x:  -> P2; 0.09
+
+#eq. 6
+J18: lacIm -> lacIm + lacI ; 0.1*lacIm
+J19: lacI -> ; 0.001*lacI
+J20: lacI + P4 -> P4lacI ; 1*lacI*P4
+J21: P4lacI -> P4 + lacI ; 0.5*P4lacI
+
+#eq. 7
+J22: tetR + P2-> P2tetR ; 1*tetR*P2
+J23: P2tetR -> P2+ tetR ; 0.5*P2tetR
+J24: P2tetR -> ; kdeg*P2tetR
+
+#eq. 8
+J25: P2+ tetR -> P2tetR ; 1*P2*tetR
+J26: P2tetR -> P2+ tetR ; 0.5*P2tetR
+J27: P2tetR -> ; kdeg*P2tetR
+
+#eq. 9
+J28: araC + P3 -> P3araC ; 1*araC*P3
+J29: P3araC -> P3 + araC ; 0.000001*P3araC
+J30: P3araC -> ; kdeg*P3araC
+
+#eq. 10
+J31: araC + P3 -> P3araC ; 1*araC*P3
+J32: P3araC -> P3 + araC ; 0.000001*P3araC
+J33: P3araC -> ; kdeg*P3araC
+
+#eq. 11
+J34: P4 + lacI -> P4lacI ; 1*lacI*P4
+J35: P4lacI -> P4 + lacI ; 0.5*P4lacI
+J36: P4lacI -> ; kdeg*P4lacI
+
+#eq. 12
+J37: lacI + P4 -> P4lacI ; 1*lacI*P4
+J38: P4lacI -> P4 + lacI ; 0.5*P4lacI
+J39: P4lacI -> ; kdeg*P4lacI
+
+
+# Species initialization
+tetRm = 0
+tetR = 0
+araCm = 0
+araC = 0
+lacIm = 0
+lacI = 0
+P2= 0.166
+P2tetR = 0
+P3 = 0.166
+P3araC = 0
+P4 = 0.166
+P4lacI = 0
+
+# Variable initialization
+# rdm = 0.001
+kdeg = 0.275
+
+const P2, P3, P4;
