@@ -1,0 +1,12 @@
+gymnasium==0.28.1
+libroadrunner==2.4.0
+matplotlib==3.8.2
+numpy==1.25.0
+python_libsbml==5.20.1
+rich==13.4.2
+setuptools==68.0.0
+stable_baselines3==2.0.0
+tellurium==2.2.8
+tensorboard==2.13.0
+tensorboard-data-server==0.7.1
+tqdm==4.65.0
